@@ -1,0 +1,31 @@
+1. RUN: composer create-project laravel/laravel source
+2. RUN: composer require laravel/breeze --dev
+3. RUN: composer require laravel/ui
+4. RUN: php artisan ui bootstrap
+5. RUN: php artisan breeze:install
+6. CONFIG: database access in .env
+7. RUN: php artisan migrate
+
+8. CONFIG: alter in vite.config.js:
+    laravel({
+                input: [
+                    'resources/sass/app.scss',
+                    'resources/js/app.js',
+                ],
+                refresh: true,
+            }),
+
+9. RUN: npm install
+10. RUN: npm run dev
+
+11. CONFIG: add prefix in tailwind.config.js 
+        prefix: 'tw-',
+        content: [
+            './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+            './storage/framework/views/*.php',
+            './resources/views/**/*.blade.php',
+            './resources/js/**/*.vue',
+        ],
+12. CONFIG: add in app.blade.php   
+     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue", 'resources/sass/app.scss'])
+13.OPCIONAL: convert all class tailwind in resources to prefix tw- (https://github.vue.tailwind-prefix.cbass.dev/)
